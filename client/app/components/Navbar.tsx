@@ -1,9 +1,10 @@
 'use client'
-import React from "react";
-
-import { Navbar, NavbarBrand, NavbarContent, NavbarItem, Link, Button, Avatar, Popover, PopoverContent, PopoverTrigger, Spinner } from "@nextui-org/react";
+import InsomniakLogo from "@/images/insomniak";
+import { Navbar, NavbarBrand, NavbarContent, NavbarItem, Link, Button, Avatar, Popover, PopoverContent, PopoverTrigger, Spinner, Spacer } from "@nextui-org/react";
 import { signIn, signOut, useSession } from "next-auth/react";
 import { usePathname } from "next/navigation";
+import { GithubLoginButton } from "react-social-login-buttons";
+import { GoogleLoginButton } from "react-social-login-buttons";
 
 export default function App() {
 
@@ -29,9 +30,9 @@ export default function App() {
                 <p className="text-small font-bold text-foreground">
                     Se connecter
                 </p>
-                <div className="flex flex-col gap-2 w-full">
-                    <Button size="sm" variant="bordered" className="cursor-pointer" onClick={() => signIn('github')}>Github</Button>
-                    <Button size="sm" variant="bordered" className="cursor-pointer" onClick={() => signIn('google')}>Google</Button>
+                <div className="flex flex-col w-full h-full">
+                    <GithubLoginButton onClick={() => signIn('github')} size="3rem">Github</GithubLoginButton>
+                    <GoogleLoginButton onClick={() => signIn('google')} size="3rem">Google</GoogleLoginButton>
                 </div>
             </div>
         </PopoverContent>
@@ -40,6 +41,8 @@ export default function App() {
     return (
         <Navbar>
             <NavbarBrand>
+                <InsomniakLogo height="40" width="40" />
+                <Spacer x={2} />
                 <p className="font-bold text-inherit">INSO QUIZZ</p>
             </NavbarBrand>
             <NavbarContent className="hidden sm:flex gap-4" justify="center">
@@ -49,8 +52,13 @@ export default function App() {
                     </Link>
                 </NavbarItem>
                 <NavbarItem isActive={path === '/quizz'}>
-                    <Link href="/quizz" color="foreground">
-                        Quizz
+                    <Link href="/quizz" color="foreground" isDisabled={status === 'unauthenticated'}>
+                        {status === 'unauthenticated' ? '🔒 Quizz' : 'Quizz'}
+                    </Link>
+                </NavbarItem>
+                <NavbarItem isActive={path === '/teachers'}>
+                    <Link href="/teachers" color="foreground" isDisabled={status === 'unauthenticated'}>
+                        {status === 'unauthenticated' ? '🔒 Teachers' : 'Teachers'}
                     </Link>
                 </NavbarItem>
             </NavbarContent>
@@ -78,7 +86,7 @@ export default function App() {
                             backdrop={"blur"}
                         >
                             <PopoverTrigger>
-                                <Button color="primary">Se connecter</Button>
+                                <Button size="sm" variant="ghost" color="primary">Se connecter</Button>
                             </PopoverTrigger>
                             {isNotConnectedContent}
                         </Popover>

@@ -12,8 +12,24 @@ export const authOptions: NextAuthOptions = {
         GoogleProvider({
             clientId: process.env.GOOGLE_CLIENT_ID!,
             clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
+            // profile(profile) {
+            //     return {
+            //         id: profile.id,
+            //         name: profile.name,
+            //         email: profile.email,
+            //         role: profile.email?.endsWith("@gmail.com") ? "teachers" : "students",
+            //     }
+            // }
         }),
     ],
+    pages: {
+        signIn: "/",
+    },
+    callbacks: {
+        redirect: async ({ url, baseUrl }) => {
+            return Promise.resolve(url.startsWith(baseUrl) ? url : baseUrl);
+        }
+    }
 }
 
 const handler = NextAuth(authOptions);
