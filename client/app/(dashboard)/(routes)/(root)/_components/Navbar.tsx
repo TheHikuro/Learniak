@@ -1,15 +1,14 @@
 'use client'
-import InsomniakLogo from "@/images/insomniak";
-import { Navbar, NavbarBrand, NavbarContent, NavbarItem, Link, Button, Avatar, Popover, PopoverContent, PopoverTrigger, Spinner, Spacer } from "@nextui-org/react";
+
+import { Button, Avatar, Popover, PopoverContent, PopoverTrigger, Spinner, Input } from "@nextui-org/react";
 import { signIn, signOut, useSession } from "next-auth/react";
-import { usePathname } from "next/navigation";
 import { GithubLoginButton } from "react-social-login-buttons";
 import { GoogleLoginButton } from "react-social-login-buttons";
+import { BsSearch } from "react-icons/bs";
 
 export default function App() {
 
     const { data, status } = useSession()
-    const path = usePathname()
 
     const isConnectedContent = (
         <PopoverContent className="w-[240px]">
@@ -38,31 +37,19 @@ export default function App() {
         </PopoverContent>
     )
 
+
     return (
-        <Navbar>
-            <NavbarBrand>
-                <InsomniakLogo height="40" width="40" />
-                <Spacer x={2} />
-                <p className="font-bold text-inherit">INSO QUIZZ</p>
-            </NavbarBrand>
-            <NavbarContent className="hidden sm:flex gap-4" justify="center">
-                <NavbarItem isActive={path === '/'}>
-                    <Link href="/" color="foreground">
-                        Home
-                    </Link>
-                </NavbarItem>
-                <NavbarItem isActive={path === '/quizz'}>
-                    <Link href="/quizz" color="foreground" isDisabled={status === 'unauthenticated'}>
-                        {status === 'unauthenticated' ? '🔒 Quizz' : 'Quizz'}
-                    </Link>
-                </NavbarItem>
-                <NavbarItem isActive={path === '/teachers'}>
-                    <Link href="/teachers" color="foreground" isDisabled={status === 'unauthenticated'}>
-                        {status === 'unauthenticated' ? '🔒 Teachers' : 'Teachers'}
-                    </Link>
-                </NavbarItem>
-            </NavbarContent>
-            <NavbarContent justify="end">
+        <div className="p-4 border-b h-full flex items-center bg-white shadow-sm justify-between">
+            <div>
+                <Input
+                    type="text"
+                    placeholder="Chercher votre cours ici !"
+                    startContent={
+                        <BsSearch size={20} />
+                    }
+                />
+            </div>
+            <div>
                 {status === 'loading' ? (
                     <Spinner color="default" />
                 ) : (
@@ -92,7 +79,7 @@ export default function App() {
                         </Popover>
                     )
                 )}
-            </NavbarContent>
-        </Navbar>
+            </div>
+        </div>
     );
 }

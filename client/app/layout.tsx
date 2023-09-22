@@ -3,7 +3,7 @@ import AuthProvider from '@/providers/AuthProvider'
 import UiProvider from '@/providers/UiProvider'
 import { getServerSession } from 'next-auth'
 import { redirect } from 'next/navigation'
-import Navbar from '@/components/Navbar'
+import Navbar from '@/(dashboard)/(routes)/(root)/_components/Navbar'
 
 export const metadata = {
   title: 'Inso Quizz',
@@ -20,11 +20,8 @@ export default function RootLayout({
     <AuthProvider>
       <html lang="en" className=''>
         <body className=''>
-          <Navbar />
           <UiProvider>
-            <div className='h-[calc(100vh-64px)]'>
-              {children}
-            </div>
+            {children}
           </UiProvider>
         </body>
       </html>
