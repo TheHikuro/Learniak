@@ -1,6 +1,6 @@
 'use client'
 
-import { Button, Avatar, Popover, PopoverContent, PopoverTrigger, Spinner, Input } from "@nextui-org/react";
+import { Button, Avatar, Popover, PopoverContent, PopoverTrigger, Spinner, Input, Divider } from "@nextui-org/react";
 import { signIn, signOut, useSession } from "next-auth/react";
 import { GithubLoginButton } from "react-social-login-buttons";
 import { GoogleLoginButton } from "react-social-login-buttons";
@@ -12,11 +12,17 @@ export default function App() {
 
     const isConnectedContent = (
         <PopoverContent className="w-[240px]">
-            <div className="px-1 py-2 w-full space-y-2">
-                <p className="text-small font-bold text-foreground">
-                    {data?.user?.name}
-                </p>
-                <div className="flex flex-col gap-2 w-full">
+            <div className="py-2 w-full space-y-2">
+                <div>
+                    <p className="text-small font-bold text-foreground">
+                        {data?.user?.name}
+                    </p>
+                    <p className="text-gray-600 text-xs">
+                        {data?.user?.email || 'Aucun email'}
+                    </p>
+                </div>
+                <Divider orientation='horizontal' />
+                <div className="flex flex-col w-full">
                     <Button color="danger" onClick={() => signOut()} className="hover:bg-red-500">Se déconnecter</Button>
                 </div>
             </div>
@@ -40,7 +46,7 @@ export default function App() {
 
     return (
         <div className="p-4 border-b h-full flex items-center bg-white shadow-sm justify-between">
-            <div>
+            <div className="w-[300px]">
                 <Input
                     type="text"
                     placeholder="Chercher votre cours ici !"
@@ -61,7 +67,7 @@ export default function App() {
                             backdrop={"blur"}
                         >
                             <PopoverTrigger>
-                                <Avatar isBordered radius="md" src={data?.user?.image as string} />
+                                <Avatar isBordered radius="md" src={data?.user?.image as string} className="cursor-pointer" />
                             </PopoverTrigger>
                             {isConnectedContent}
                         </Popover>

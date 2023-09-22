@@ -1,6 +1,5 @@
-import Navbar from "./(routes)/(root)/_components/Navbar";
-import SideBar from "./(routes)/(root)/_components/Sidebar";
-import FilterCourses from "./_components/Filter";
+import Navbar from "./_components/Navbar";
+import SideBar from "./_components/Sidebar";
 
 export default function DashBoardLayout({ children }: { children: React.ReactNode }) {
     return (
@@ -12,7 +11,6 @@ export default function DashBoardLayout({ children }: { children: React.ReactNod
                 <SideBar />
             </div>
             <main className="md:pl-64 pt-[80px] h-full">
-                <FilterCourses />
                 {children}
             </main>
         </div>

@@ -1,17 +1,17 @@
 'use client';
 import InsomniakLogo from "@/images/insomniak";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { AiOutlineCompass } from "react-icons/ai";
 import { MdOutlineSpaceDashboard } from "react-icons/md";
 
 const list = [
     {
-        title: "Naviger",
+        title: "Parcourir nos cours",
         icon: <AiOutlineCompass size={20} />,
         path: "/",
     },
     {
-        title: "Dashboard",
+        title: "Tableau de bord",
         icon: <MdOutlineSpaceDashboard size={20} />,
         path: "/dashboard",
     },
@@ -19,6 +19,7 @@ const list = [
 export default function SideBar() {
 
     const pathname = usePathname()
+    const router = useRouter()
 
     return (
         <div className="text-gray-700 h-screen w-64 fixed top-0 left-0 overflow-y-auto border-r">
@@ -29,7 +30,11 @@ export default function SideBar() {
             <nav className="flex flex-col justify-between">
                 <ul>
                     {list.map((item, index) => (
-                        <div key={index} className={`flex hover:bg-blue-100 cursor-pointer justify-between ${pathname === item.path && 'bg-blue-100'}`}>
+                        <div
+                            key={index}
+                            className={`flex hover:bg-blue-100 cursor-pointer justify-between ${pathname === item.path && 'bg-blue-100'}`}
+                            onClick={() => router.push(item.path)}
+                        >
                             <li className="p-4 flex items-center space-x-2">
                                 <div>
                                     {item.icon}

@@ -1,12 +1,9 @@
 import './globals.css'
 import AuthProvider from '@/providers/AuthProvider'
 import UiProvider from '@/providers/UiProvider'
-import { getServerSession } from 'next-auth'
-import { redirect } from 'next/navigation'
-import Navbar from '@/(dashboard)/(routes)/(root)/_components/Navbar'
 
 export const metadata = {
-  title: 'Inso Quizz',
+  title: 'Learniak',
   description: 'Fun quizz for everyone',
 }
 
