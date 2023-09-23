@@ -3,6 +3,7 @@ import InsomniakLogo from "@/images/insomniak";
 import { usePathname, useRouter } from "next/navigation";
 import { AiOutlineCompass } from "react-icons/ai";
 import { MdOutlineSpaceDashboard } from "react-icons/md";
+import { GoCommentDiscussion } from "react-icons/go";
 
 const list = [
     {
@@ -15,6 +16,11 @@ const list = [
         icon: <MdOutlineSpaceDashboard size={20} />,
         path: "/dashboard",
     },
+    {
+        title: 'Forum',
+        icon: <GoCommentDiscussion size={20} />,
+        path: '/forum'
+    }
 ]
 export default function SideBar() {
 

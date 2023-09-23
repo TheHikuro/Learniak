@@ -1,7 +1,7 @@
 FROM node:latest as base
 ARG SERVICE_NAME
 WORKDIR /usr/src/${SERVICE_NAME}
-COPY package*.json ./
+COPY package*.json bun.lockb ./
 RUN npm install -g bun
 
 FROM base as dev

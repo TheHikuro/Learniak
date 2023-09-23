@@ -4,49 +4,7 @@ import { BsBook } from "react-icons/bs";
 import InfoCard from "../(root)/_components/info-card";
 import { BiTimeFive } from "react-icons/bi";
 import { BsCheck2Circle } from "react-icons/bs";
-
-const list = [
-    {
-        title: "Orange",
-        img: `https://source.unsplash.com/random/640x480?sig=${Math.random() * 100}`,
-        price: "$5.50",
-    },
-    {
-        title: "Tangerine",
-        img: `https://source.unsplash.com/random/640x480?sig=${Math.random() * 100}`,
-        price: "$3.00",
-    },
-    {
-        title: "Raspberry",
-        img: `https://source.unsplash.com/random/640x480?sig=${Math.random() * 100}`,
-        price: "$10.00",
-    },
-    {
-        title: "Lemon",
-        img: `https://source.unsplash.com/random/640x480?sig=${Math.random() * 100}`,
-        price: "$5.30",
-    },
-    {
-        title: "Avocado",
-        img: `https://source.unsplash.com/random/640x480?sig=${Math.random() * 100}`,
-        price: "$15.70",
-    },
-    {
-        title: "Lemon 2",
-        img: `https://source.unsplash.com/random/640x480?sig=${Math.random() * 100}`,
-        price: "Gratuit",
-    },
-    {
-        title: "Banana",
-        img: `https://source.unsplash.com/random/640x480?sig=${Math.random() * 100}`,
-        price: "$7.50",
-    },
-    {
-        title: "Watermelon",
-        img: `https://source.unsplash.com/random/640x480?sig=${Math.random() * 100}`,
-        price: "$12.20",
-    },
-];
+import { list } from "../(root)/_mock";
 
 export default function Dashboard() {
     return (
@@ -67,7 +25,7 @@ export default function Dashboard() {
             </div>
             <div className="gap-5 grid grid-cols-2 sm:grid-cols-4">
                 {list.map((item, index) => (
-                    <Card key={index} isPressable onPress={() => console.log("item pressed")} radius='sm' className='border'>
+                    <Card key={index} isPressable onPress={() => console.log("item pressed")} radius='sm' className="border">
                         <CardBody className="overflow-visible p-3">
                             <Image
                                 radius="sm"

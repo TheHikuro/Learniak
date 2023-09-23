@@ -2,7 +2,7 @@ FROM node:latest
 
 WORKDIR /
 
-COPY package*.json ./
+COPY package*.json bun.lockb ./
 RUN npm install -g bun
 
 COPY . .
