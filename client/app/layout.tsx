@@ -1,6 +1,8 @@
 import './globals.css'
 import AuthProvider from '@/providers/AuthProvider'
 import UiProvider from '@/providers/UiProvider'
+import { ToasterProvider } from './providers/toaster-provider'
+import { ConfettiProvider } from './providers/confetti-provider'
 
 export const metadata = {
   title: 'Learniak',
@@ -15,13 +17,16 @@ export default function RootLayout({
 
   return (
     <AuthProvider>
-      <html lang="en" className=''>
-        <body className=''>
-          <UiProvider>
-            {children}
-          </UiProvider>
-        </body>
-      </html>
+      <ToasterProvider>
+        <html lang="en">
+          <body>
+            <ConfettiProvider />
+            <UiProvider>
+              {children}
+            </UiProvider>
+          </body>
+        </html>
+      </ToasterProvider>
     </AuthProvider>
   )
 }
